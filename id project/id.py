@@ -2,6 +2,7 @@ import sqlite3
 import random
 import datetime
 
+#just testing this out
 conn = sqlite3.connect('snn_user_data.db')
 cursor = conn.cursor()
 
