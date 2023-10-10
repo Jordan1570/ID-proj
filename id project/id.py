@@ -95,7 +95,8 @@ if user_role == "admin":
         print("1. Read User by Email")
         print("2. Update User Email")
         print("3. Delete User")
-        print("4. Exit")
+        print("4. Read Entire Database")
+        print("5. Exit")
         
         choice = input("Enter your choice (1/2/3/4): ")
         
@@ -118,8 +119,18 @@ if user_role == "admin":
             delete_user(conn, user_id)
         
         elif choice == '4':
-            break
+            cursor.execute('SELECT * FROM users')
+            all_users = cursor.fetchall()
+            if all_users:
+                print("All Users")
+                for user in all_users:
+                    print(user)
+            else:
+                print("No users in the Database.")
 
+        elif choice == '5':
+            break
+        
 elif user_role == agent_role:
     while True:
         print("Choose an option:")
