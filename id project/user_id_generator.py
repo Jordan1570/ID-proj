@@ -1,6 +1,8 @@
 import sqlite3
 import random
 import datetime
+import smtplib
+from email.mime.text import MIMEText
 
 conn = sqlite3.connect('id_user_data.db')
 cursor = conn.cursor()
@@ -47,7 +49,7 @@ def create_user(conn, first_name, middle_name, last_name, date_of_birth, email, 
         existing_user = cursor.fetchone()
         
         if existing_user:
-            print(f"User with email '{email}' already exists with ID: {existing_user[0]}")
+            print(f"User with email '{email}' already exists.")
         else:
             user_id = ''.join(str(random.randint(0, 9)) for _ in range(9))
             cursor.execute('''
@@ -55,9 +57,39 @@ def create_user(conn, first_name, middle_name, last_name, date_of_birth, email, 
                 VALUES (?, ?, ?, ?, ?, ?, ?)
             ''', (first_name, middle_name, last_name, date_of_birth, email, gender, user_id))
             conn.commit()
-            print(f"New user created with ID: {user_id}")
+            print(f"New user created.")
+            send_code_to_email(email, user_id)
     except sqlite3.Error as e:
         print("SQLite error:", e)
+
+
+# Erin input the email and password here on your end to see if the email will send. lines 71 and 72.
+def send_code_to_email(email, user_id):
+    # Email configuration
+    SMTP_SERVER = "smtp.gmail.com"  
+    SMTP_PORT = 587  
+    SMTP_USERNAME = "Enter Email Here."  
+    SMTP_PASSWORD = "Enter Password Here"  
+
+    msg = MIMEText(f"Your generated code is: {user_id}")
+    msg["Subject"] = "Your Generated Code"
+    msg["From"] = SMTP_USERNAME
+    msg["To"] = email
+
+    try:
+        # Connect to the SMTP server
+        server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
+        server.starttls()
+        server.login(SMTP_USERNAME, SMTP_PASSWORD)
+
+        # Send the email
+        server.sendmail(SMTP_USERNAME, [email], msg.as_string())
+
+        # Disconnect from the server
+        server.quit()
+        print(f"Code sent to {email}")
+    except smtplib.SMTPException as e:
+        print("SMTP error:", e)
 
 def get_user_by_email(conn, email):
     cursor = conn.cursor()
@@ -130,7 +162,8 @@ if user_role == "admin":
 
         elif choice == '5':
             break
-        
+
+# If Agent this his roles.        
 elif user_role == agent_role:
     while True:
         print("Choose an option:")
