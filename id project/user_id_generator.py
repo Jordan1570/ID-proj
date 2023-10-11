@@ -67,11 +67,12 @@ def create_user(conn, first_name, middle_name, last_name, date_of_birth, email, 
 def send_code_to_email(email, user_id):
     # Email configuration
     SMTP_SERVER = "smtp.gmail.com"  
-    SMTP_PORT = 587  
-    SMTP_USERNAME = "Enter Email Here."  
-    SMTP_PASSWORD = "Enter Password Here"  
+    SMTP_PORT = 587
+    SMTP_USERNAME = "enter email"  
+    SMTP_PASSWORD = "enter password"
+            
 
-    msg = MIMEText(f"Your generated code is: {user_id}")
+    msg = MIMEText(f"Hello {first_name}\n\tThank you for processing your application.\n\tYour ID number is: {user_id}.\n\tPLEASE DO NOT SHARE THIS WITH ANYONE")
     msg["Subject"] = "Your Generated Code"
     msg["From"] = SMTP_USERNAME
     msg["To"] = email
@@ -84,7 +85,6 @@ def send_code_to_email(email, user_id):
 
         # Send the email
         server.sendmail(SMTP_USERNAME, [email], msg.as_string())
-
         # Disconnect from the server
         server.quit()
         print(f"Code sent to {email}")
