@@ -1,0 +1,5 @@
+# To see if user exists in db just call fetch one method?? 
+
+# put this in chatgpt - cursor.execute('SELECT user_id FROM users WHERE email = ?', (email,))
+    
+

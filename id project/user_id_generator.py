@@ -67,7 +67,7 @@ def create_user(conn, first_name, middle_name, last_name, date_of_birth, email, 
 def send_code_to_email(email, user_id):
     # Email configuration
     SMTP_SERVER = "smtp.gmail.com"  
-    SMTP_PORT = 587  
+    SMTP_PORT = 587
     SMTP_USERNAME = "enter email"  
     SMTP_PASSWORD = "enter password"
             
@@ -85,16 +85,11 @@ def send_code_to_email(email, user_id):
 
         # Send the email
         server.sendmail(SMTP_USERNAME, [email], msg.as_string())
-
-    except smtplib.SMTPRecipientsRefused as msg:
-        print("Recipeint Refusesd Email:", msg)
-
         # Disconnect from the server
         server.quit()
         print(f"Code sent to {email}")
     except smtplib.SMTPException as e:
         print("SMTP error:", e)
-
 
 def get_user_by_email(conn, email):
     cursor = conn.cursor()
