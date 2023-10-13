@@ -1,0 +1,52 @@
+/* Reset some default styles */
+body, h2, form, input[type="password"], input[type="submit"] {
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply a background color to the entire page */
+body {
+    background-color: #003366; /* Navy blue */
+    color: #00A2A5; /* Teal text color */
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center; /* Added text alignment */
+}
+
+/* Style the header */
+h2 {
+    font-size: 36px;
+    margin-top: 20px; /* Added margin */
+}
+
+/* Style the form elements */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px; /* Added padding */
+    background-color: #003366; /* White background */
+    border-radius: 10px;
+}
+
+input[type="password"] {
+    width: 100%;
+    padding: 12px; /* Increased padding for a nice look */
+    margin: 10px 0;
+    border: 1px solid #00A2A5; /* Teal border */
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #00A2A5; /* Teal background */
+    color: #003366; /* Navy blue text color */
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px; /* Increased padding for a nice look */
+    cursor: pointer;
+    margin-top: 10px; /* Added margin */
+}
+
+input[type="submit"]:hover {
+    background-color: #003366; /* Navy blue background on hover */
+    color: #00A2A5; /* Teal text color on hover */
+}
