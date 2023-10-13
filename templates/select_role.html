@@ -11,14 +11,18 @@
     <div>
         <p>Select Role</p>
     </div>
-    <div>
-        <label for="yes">Admin</label>
-        <input type="checkbox" name="admin">
-        <label for="no">Agent</label>
-        <input type="checkbox" name="agent">
-    </div>
-    <!-- Call select role function -->
-    <button>Submit</button>
+    <form method="POST">
+        <div>
+            <label for="admin">Admin</label>
+            <input type="radio" name="role" id="admin" value="admin">
+            <br>
+            <label for="agent">Agent</label>
+            <input type="radio" name="role" id="agent" value="agent">
+            <br>
+        </div>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 
 </html>

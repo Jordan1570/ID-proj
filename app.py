@@ -24,57 +24,50 @@ cursor.execute('''
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
-    
-    return render_template("index.html")
-
-@app.route("/select-role", methods = ["POST", "GET"]) 
+# Role selection
+@app.route("/", methods=["POST", "GET"])
 def select_role():
+    if request.method == "POST":
+        role = request.form.get("role")  # Check which role was selected
 
-    # maybe two diff passwords for agent and admin?
-
-    # Do logic for if admin or agent
-    # admin = request.form["admin"]
-    # agent = request.form["agent"]
-
-    # if admin:
-    #     # give access to read update delete
-    
-    # if agent:
-    #     # give access to only create
-            # re render index.html
-        
+        if role == "admin":
+            return redirect("/admin-login?role=admin")  # Pass role=admin as a query parameter
+        elif role == "agent":
+            return redirect("/register-citizen")
 
     return render_template("select_role.html")
 
-# admin login
-@app.route("/admin-login", methods = [ "POST", "GET" ])
+# Admin login
+@app.route("/admin-login", methods=["POST", "GET"])
 def admin_login():
-
-    # admin credentials
-    admin_username = "admin"
     admin_password = "admin123"
 
+    # Check if the role query parameter is present and set to "admin"
+    role = request.args.get("role")
+    
+    if role != "admin":
+        return redirect("/")  # Redirect to the role selection page if the role is not "admin"
+
+    if request.method == "POST":
+        entered_password = request.form.get("admin_password")
+        if entered_password == admin_password:
+            return redirect("/view-citizens")
+        else:
+            # Password is incorrect, show an error message
+            error_message = "Incorrect password. Please try again."
+            return render_template("admin_login.html", error_message=error_message)
+    
     return render_template("admin_login.html")
 
 
-# agent login
-@app.route("/agent-login", methods = [ "POST", "GET" ])
-def agent_login():
-
-    # conn.fetchOne
-
-        
-    
-
-
-    return render_template("agent_login.html")
-
-# register citizen
 @app.route("/register-citizen", methods=[ "POST", "GET" ])
 def register_citizen():
+
         if request.method == "POST":
+
+            conn = sqlite3.connect('mydatabase.db')
+            cursor = conn.cursor()
+
             first_name = request.form["first_name"]
             middle_name = request.form["middle_name"]
             last_name = request.form["last_name"]
@@ -82,28 +75,25 @@ def register_citizen():
             date_of_birth = request.form["date_of_birth"]
             gender = request.form["gender"]
 
-            conn = sqlite3.connect('mydatabase.db')
-            cursor = conn.cursor()
+            cursor.execute('SELECT id FROM users WHERE email = ?', (email,))
+            existing_user = cursor.fetchone()
+
 
         # Check if the email already exists
-        cursor.execute('SELECT id FROM users WHERE email = ?', (email,))
-        existing_user = cursor.fetchone()
 
-        if existing_user:
+            if not existing_user:
             # conn.close()
-            return "Email already registered. Please choose another."
         
-        user_id = generate_citizen_id()
+                user_id = generate_citizen_id()
         
+                cursor.execute('INSERT INTO users (first_name, middle_name, last_name, email, date_of_birth, gender, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                    (first_name, middle_name, last_name, email, date_of_birth, gender, user_id))
+                conn.commit()
+                # conn.close()
 
-        cursor.execute('INSERT INTO users (first_name, middle_name, last_name, email, date_of_birth, gender, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)',
-                       (first_name, middle_name, last_name, email, date_of_birth, gender, user_id))
-        conn.commit()
-        # conn.close()
+                send_code_to_email(email, user_id)
 
-        send_code_to_email(email, user_id)
-
-        return "Registration successful!"
+        return render_template("index.html")
 
 # view citizen
 @app.route("/view-citizen/<int:user_id>")
