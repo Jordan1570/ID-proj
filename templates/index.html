@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ID Generator</title>
-    <link href="styles.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/register-citizen.css') }}">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
             <input type="text" name="middle_name" placeholder="Middle Name">
             <br>
             <br>
-            
+
             <input type="text" name="last_name" placeholder="Last Name">
             <br>
             <br>
@@ -33,10 +33,12 @@
             <br>
             <br>
             <p>Gender</p>
-            <label for="yes">Male</label>
-            <input type="checkbox" name="gender">
-            <label for="no">Female</label>
-            <input type="checkbox" name="gender">
+            <p>Gender</p>
+            <label for="male">Male</label>
+            <input type="radio" name="gender" id="male" value="male">
+
+            <label for="female">Female</label>
+            <input type="radio" name="gender" id="female" value="female">
             <br>
             <br>
             <!-- <button onclick="create_user()">Submit Bet</button> -->
