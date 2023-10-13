@@ -91,7 +91,7 @@ def register_citizen():
                 conn.commit()
                 # conn.close()
 
-                send_code_to_email(email, user_id)
+                send_code_to_email(first_name, email, user_id)
 
         return render_template("index.html")
 
@@ -186,14 +186,14 @@ def view_citizens():
 
 
 # erin's function to send code to email 
-def send_code_to_email(email, user_id):
+def send_code_to_email(first_name, email, user_id):
     # Email configuration
     SMTP_SERVER = "smtp.gmail.com"  
     SMTP_PORT = 587  
-    SMTP_USERNAME = "Enter Email" 
-    SMTP_PASSWORD = "Enter Password"
+    SMTP_USERNAME = "Jscottdev157@gmail.com" 
+    SMTP_PASSWORD = "nbxb qojo fyqm ewhn"
 
-    msg = MIMEText(f"Your generated code is: {user_id}")
+    msg = MIMEText(f"Hello {first_name}\n\tThank you for processing your application.\n\tYour ID number is: {user_id}.\n\tPLEASE DO NOT SHARE THIS WITH ANYONE!!!!!")
     msg["Subject"] = "Your Generated Code"
     msg["From"] = SMTP_USERNAME
     msg["To"] = email

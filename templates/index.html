@@ -15,34 +15,41 @@
     </div>
     <div>
         <form action="" method="POST">
-            <input type="text" name="first_name" placeholder="First Name">
+            <p>First Name</p>
+            <input type="text" name="first_name" placeholder="Enter">
             <br>
             <br>
-            <input type="text" name="middle_name" placeholder="Middle Name">
+            <p>Middle Name</p>
+            <input type="text" name="middle_name" placeholder="Enter">
             <br>
             <br>
-
-            <input type="text" name="last_name" placeholder="Last Name">
+            <p>Last Name</p>
+            <input type="text" name="last_name" placeholder="Enter">
             <br>
             <br>
-            <input type="email" name="email" placeholder="Email" />
+            <p>Email</p>
+            <input type="email" name="email" placeholder="Enter" />
             <br>
             <br>
             <p>Date of Birth</p>
-            <input type="date" name="date_of_birth" placeholder="Enter Birthday" />
+            <input type="date" name="date_of_birth" placeholder="Enter" />
             <br>
             <br>
-            <p>Gender</p>
-            <p>Gender</p>
-            <label for="male">Male</label>
-            <input type="radio" name="gender" id="male" value="male">
-
-            <label for="female">Female</label>
-            <input type="radio" name="gender" id="female" value="female">
-            <br>
-            <br>
-            <!-- <button onclick="create_user()">Submit Bet</button> -->
-            <button onclick="register_citizen()">Submit</button>
+            <div class="center-container">
+                <h3>Gender</h3>
+                <br>
+                <div class="radio-container">
+                    <label for="male">Male</label>
+                    <input type="radio" name="gender" id="male" value="male">
+                    
+                    <label for="female">Female</label>
+                    <input type="radio" name="gender" id="female" value="female">
+                </div>
+                <br>
+                <br>
+                <!-- <button onclick="create_user()">Submit Bet</button> -->
+                <button onclick="register_citizen()">Submit</button>
+            </div>
         </form>
     </div>
 </body>

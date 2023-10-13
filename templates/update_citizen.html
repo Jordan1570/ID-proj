@@ -3,23 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Update Citizen</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>Update Citizen</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/update-citizen.css') }}">
+    </head>
+    <body>
+        <h1>Update Citizen</h1>
+        <form method="POST" action="/update-citizen/{{ user_id }}">
+                <input type="text" name="first_name" placeholder="First Name">
+                <br>
+                <br>
+                <input type="text" name="middle_name" placeholder="Middle Name">
+                <br>
+                <br>
+                <input type="text" name="last_name" placeholder="Last Name">
+                <br>
+                <br>
+                <input type="email" name="email" placeholder="Email" />
+                <br>
+                <br>
+                <button onclick="update_user()">Submit</button>
+        </form>
+    </body>
+    </html>
+    
 </head>
-<body>
-    <h1>Update Citizen</h1>
-    <form method="POST" action="/update-citizen/{{ user_id }}">
-            <input type="text" name="first_name" placeholder="First Name">
-            <br>
-            <br>
-            <input type="text" name="middle_name" placeholder="Middle Name">
-            <br>
-            <br>
-            <input type="text" name="last_name" placeholder="Last Name">
-            <br>
-            <br>
-            <input type="email" name="email" placeholder="Email" />
-            <br>
-            <br>
-            <button onclick="update_user()">Submit</button>
-    </form>
-</body>
+
 </html>

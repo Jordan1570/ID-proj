@@ -1,78 +1,102 @@
 /* Reset some default styles */
 body, h1, h2, h3, p {
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Apply a background color to the entire page */
-  body {
-    background-color: #003366; /* Navy blue */
-    color: #00A2A5; /* Teal text color */
-    font-family: Arial, sans-serif;
-    padding: 20px;
-  }
-  
-  /* Style the header */
-  header {
-    text-align: center;
-  }
-  
-  h2 {
-    font-size: 36px;
-  }
-  
-  /* Style the main content area */
-  .main-content {
-    background-color: #FFFFFF; /* White background */
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-  }
-  
-  h3 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  /* Style the form elements */
-  form {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  input[type="text"],
-  input[type="email"],
-  input[type="date"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #00A2A5; /* Teal border */
-    border-radius: 5px;
-  }
-  
-  input[type="checkbox"] {
-    margin: 10px 5px;
-  }
-  
-  button {
-    background-color: #00A2A5; /* Teal background */
-    color: #003366; /* Navy blue text color */
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #003366; /* Navy blue background on hover */
-    color: #00A2A5; /* Teal text color on hover */
-  }
-  
-  /* Style the footer */
-  footer {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  /* Additional styling can be added as needed */
-  
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  text-align: center;
+}
+
+/* Apply a background color to the entire page */
+body {
+  background-color: #003366; /* Navy blue */
+  color: #00A2A5; /* Teal text color */
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+/* Style the header */
+header {
+  text-align: center;
+  margin-top: 20px; /* Added margin to center text */
+}
+
+h2 {
+  font-size: 36px;
+  text-align: center;
+}
+
+/* Style the main content area */
+.main-content {
+  background-color: #FFFFFF; /* White background */
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Style the form elements */
+form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #00A2A5; /* Teal border */
+  border-radius: 5px;
+}
+
+input[type="checkbox"] {
+  margin: 10px 5px;
+}
+
+button {
+  background-color: #00A2A5; /* Teal background */
+  color: #003366; /* Navy blue text color */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #003366; /* Navy blue background on hover */
+  color: #00A2A5; /* Teal text color on hover */
+}
+
+/* Style the footer */
+footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.radio-container {
+  display: flex;
+  align-items: center;
+}
+
+.radio-container label {
+  margin-right: 10px; /* Adjust the margin as needed for spacing */
+}
+
+
+
+/* Additional styling can be added as needed */
